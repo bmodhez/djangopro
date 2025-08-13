@@ -93,7 +93,7 @@ function HeroSection() {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Hi, I'm <span className="highlight">Ron Gaming77</span>
+              Hi, I'm <span className="highlight">Bhavin Modh</span>
             </h1>
             <h2 className="hero-subtitle">Full Stack Developer</h2>
             <p className="hero-description">
