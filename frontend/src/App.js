@@ -140,9 +140,8 @@ function AboutSection() {
         <div className="about-content">
           <div className="about-text">
             <p className="about-intro">
-              I'm a dedicated Full Stack Developer with a passion for creating exceptional digital experiences.
-              With expertise in modern web technologies and a keen eye for detail, I transform ideas into robust,
-              scalable applications.
+              A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities.
+              With meticulous attention to detail and a passion for innovation.
             </p>
             <div className="about-highlights">
               <div className="highlight-item">
