@@ -20,6 +20,7 @@ const Dashboard = () => {
       setDashboardData(response.data);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
+      console.log('Using fallback sample data');
       // Use mock data if API fails
       setDashboardData({
         totalIncome: 4250.00,

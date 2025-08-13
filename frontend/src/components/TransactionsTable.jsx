@@ -17,7 +17,8 @@ const TransactionsTable = () => {
       setTransactions(response.data);
       setError(null);
     } catch (err) {
-      setError('Failed to fetch transactions');
+      console.error('Failed to fetch transactions:', err);
+      setError('Failed to fetch transactions - using sample data');
       // Mock data for development
       setTransactions([
         {
@@ -101,8 +102,8 @@ const TransactionsTable = () => {
           Recent Transactions
         </h3>
         {error && (
-          <p className="mt-1 text-sm text-red-600">
-            {error} (showing sample data)
+          <p className="mt-1 text-sm text-amber-600 bg-amber-50 px-3 py-2 rounded">
+            ⚠️ {error}
           </p>
         )}
       </div>
