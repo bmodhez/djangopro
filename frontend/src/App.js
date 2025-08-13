@@ -322,7 +322,11 @@ function ProjectsSection() {
           {projects.map((project, index) => (
             <div key={index} className="project-card">
               <div className="project-image">
-                <div className="project-emoji">{project.image}</div>
+                <div className="project-phone">
+                  <div className="project-phone-screen">
+                    {project.image}
+                  </div>
+                </div>
               </div>
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
