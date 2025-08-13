@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+.app-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.app-header p {
+  margin: 10px 0 0 0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.app-main {
+  padding: 40px 20px;
+}
+
+.my-component {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.my-component h2 {
+  color: #333;
+  margin-top: 0;
+}
+
+.my-component p {
+  color: #666;
+  line-height: 1.6;
+}
