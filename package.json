@@ -4,9 +4,10 @@
   "description": "Django project with frontend",
   "main": "index.js",
   "scripts": {
-    "start": "cd djangopro && python3 -m pip install Django && python3 manage.py runserver 0.0.0.0:3000",
-    "dev": "cd djangopro && python3 -m pip install Django && python3 manage.py runserver 0.0.0.0:3000",
-    "install-deps": "python3 -m pip install -r requirements.txt"
+    "start": "bash setup.sh",
+    "dev": "bash setup.sh",
+    "setup": "bash setup.sh",
+    "install-deps": "echo 'Requirements: Django>=4.0.0. Run: pip install -r requirements.txt'"
   },
   "dependencies": {},
   "devDependencies": {}
