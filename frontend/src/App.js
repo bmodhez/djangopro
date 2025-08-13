@@ -89,38 +89,36 @@ function Navigation({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen 
 function HeroSection() {
   return (
     <section id="home" className="hero-section">
+      <div className="hero-overlay-text">
+        <div className="overlay-text">BHAVIN&nbsp;&nbsp;&nbsp;&nbsp;IS&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;STATEMENT&nbsp;&nbsp;&nbsp;&nbsp;OF&nbsp;&nbsp;&nbsp;&nbsp;LIFE</div>
+      </div>
       <div className="hero-container">
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
               Hi, I'm <span className="highlight">Bhavin Modh</span>
             </h1>
-            <h2 className="hero-subtitle">Full Stack Developer</h2>
+            <h2 className="hero-subtitle">Full Stack Developer & Creative Technologist</h2>
             <p className="hero-description">
-              Passionate about creating innovative web applications with modern technologies.
-              Experienced in React, Django, and building user-centric solutions that drive business growth.
+              Crafting exceptional digital experiences with modern technologies.
+              Specializing in React, Django, and innovative solutions that transform ideas into reality.
             </p>
             <div className="hero-buttons">
               <button className="btn-primary" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>
-                Hire Me
+                Let's Collaborate
               </button>
               <button className="btn-secondary" onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
-                View Work
+                View Portfolio
               </button>
             </div>
           </div>
           <div className="hero-image">
-            <div className="profile-card">
-              <div className="profile-avatar">
-                <div className="avatar-placeholder">BM</div>
-              </div>
-              <div className="profile-info">
-                <h3>Professional Developer</h3>
-                <p>Available for hire</p>
-                <div className="social-links">
-                  <div className="social-link">LinkedIn</div>
-                  <div className="social-link">GitHub</div>
-                  <div className="social-link">Email</div>
+            <div className="phone-mockup">
+              <div className="phone-screen">
+                <div className="phone-content">
+                  <div className="phone-avatar">BM</div>
+                  <h3>Portfolio</h3>
+                  <p>Professional developer creating innovative digital solutions with passion and precision.</p>
                 </div>
               </div>
             </div>
