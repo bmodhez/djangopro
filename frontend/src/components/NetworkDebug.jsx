@@ -107,12 +107,28 @@ const NetworkDebug = () => {
         )}
       </div>
       
-      <button
-        onClick={retryConnection}
-        className="mt-3 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
-      >
-        Retry Connection
-      </button>
+      <div className="mt-3 space-x-2">
+        <button
+          onClick={retryConnection}
+          className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+        >
+          Retry Connection
+        </button>
+
+        <button
+          onClick={() => window.open('/api/dashboard/', '_blank')}
+          className="px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600"
+        >
+          Test API Direct
+        </button>
+
+        <button
+          onClick={() => window.open('/api/transactions/', '_blank')}
+          className="px-3 py-1 bg-purple-500 text-white text-xs rounded hover:bg-purple-600"
+        >
+          Test Transactions API
+        </button>
+      </div>
     </div>
   );
 };
