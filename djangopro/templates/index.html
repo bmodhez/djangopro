@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django React Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 20px; color: #666;">Loading Dashboard...</p>
+            <p style="color: #999; font-size: 14px;">
+                React frontend is starting up. If this takes too long, the frontend dev server might not be running.
+            </p>
+            <p style="color: #999; font-size: 12px; margin-top: 10px;">
+                Frontend should be available at <a href="http://localhost:3001" target="_blank">localhost:3001</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Check if React dev server is available and redirect
+        setTimeout(() => {
+            fetch('http://localhost:3001')
+                .then(() => {
+                    window.location.href = 'http://localhost:3001';
+                })
+                .catch(() => {
+                    document.getElementById('root').innerHTML = `
+                        <div class="loading-container">
+                            <h2 style="color: #e74c3c;">Frontend Dev Server Not Running</h2>
+                            <p>To see the React dashboard, please start the frontend dev server:</p>
+                            <code style="background: #f8f9fa; padding: 10px; border-radius: 4px; display: block; margin: 10px 0;">
+                                cd frontend && npm run dev
+                            </code>
+                            <p>Then visit <a href="http://localhost:3001">http://localhost:3001</a></p>
+                            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: left; max-width: 600px;">
+                                <h3>Django API is running on port 3000:</h3>
+                                <ul>
+                                    <li><a href="/api/transactions/">/api/transactions/</a> - Transaction data</li>
+                                    <li><a href="/api/dashboard/">/api/dashboard/</a> - Dashboard summary</li>
+                                    <li><a href="/admin/">/admin/</a> - Django admin</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                });
+        }, 2000);
+    </script>
+</body>
+</html>
