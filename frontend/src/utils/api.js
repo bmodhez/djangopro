@@ -2,22 +2,26 @@ import axios from 'axios';
 
 // Determine the API base URL based on the environment
 const getApiBaseUrl = () => {
+  // Check for environment variable first
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+
   if (typeof window !== 'undefined') {
     // In browser environment
     const currentUrl = window.location.href;
-    
+
     // If we're on a cloud domain (like .fly.dev), use the same domain for API
-    if (currentUrl.includes('.fly.dev') || currentUrl.includes('localhost:3001')) {
-      // Use the current origin but replace port 3001 with 3000 for localhost
-      if (currentUrl.includes('localhost:3001')) {
-        return 'http://localhost:3000';
-      }
-      // For cloud environments, use the current origin which should proxy to Django
+    if (currentUrl.includes('.fly.dev')) {
+      // For cloud environments, try to proxy through the current domain
       return window.location.origin;
+    } else if (currentUrl.includes('localhost:3001')) {
+      // Local development - use Django backend on port 3000
+      return 'http://localhost:3000';
     }
   }
-  
-  // Default fallback
+
+  // Default fallback - empty string means relative URLs
   return '';
 };
 
