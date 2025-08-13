@@ -4,10 +4,10 @@
   "description": "Django project with frontend",
   "main": "index.js",
   "scripts": {
-    "start": "bash setup.sh",
-    "dev": "bash setup.sh",
-    "setup": "bash setup.sh",
-    "install-deps": "echo 'Requirements: Django>=4.0.0. Run: pip install -r requirements.txt'"
+    "start": "cd djangopro && python3 manage.py runserver 0.0.0.0:3000",
+    "dev": "cd djangopro && python3 manage.py runserver 0.0.0.0:3000",
+    "migrate": "cd djangopro && python3 manage.py migrate",
+    "install-deps": "apt-get update && apt-get install -y python3-django"
   },
   "dependencies": {},
   "devDependencies": {}
