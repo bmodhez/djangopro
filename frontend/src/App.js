@@ -112,7 +112,7 @@ function HeroSection() {
           <div className="hero-image">
             <div className="profile-card">
               <div className="profile-avatar">
-                <div className="avatar-placeholder">RG</div>
+                <div className="avatar-placeholder">BM</div>
               </div>
               <div className="profile-info">
                 <h3>Professional Developer</h3>
