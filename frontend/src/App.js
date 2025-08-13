@@ -72,7 +72,7 @@ function Navigation({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen 
               className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
               onClick={() => scrollToSection(item.id)}
             >
-              {item.label}
+              <span>{item.label}</span>
             </div>
           ))}
         </div>
