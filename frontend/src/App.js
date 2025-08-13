@@ -361,7 +361,7 @@ function ContactSection() {
               <div className="contact-icon">📧</div>
               <div className="contact-details">
                 <h4>Email</h4>
-                <p>ron.gaming77@email.com</p>
+                <p>bhavin.modh@email.com</p>
               </div>
             </div>
             <div className="contact-item">
