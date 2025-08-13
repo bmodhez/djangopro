@@ -11,17 +11,20 @@ const getApiBaseUrl = () => {
     // In browser environment
     const currentUrl = window.location.href;
 
-    // If we're on a cloud domain (like .fly.dev), use the same domain for API
+    // If we're on a cloud domain (like .fly.dev), use relative URLs
+    // This allows the platform to handle internal routing
     if (currentUrl.includes('.fly.dev')) {
-      // For cloud environments, try to proxy through the current domain
-      return window.location.origin;
+      console.log('Cloud environment detected, using relative URLs');
+      return ''; // Empty string = relative URLs
     } else if (currentUrl.includes('localhost:3001')) {
       // Local development - use Django backend on port 3000
+      console.log('Local development detected, using localhost:3000');
       return 'http://localhost:3000';
     }
   }
 
   // Default fallback - empty string means relative URLs
+  console.log('Using relative URLs as fallback');
   return '';
 };
 
