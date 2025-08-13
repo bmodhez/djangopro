@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import SummaryCards from './SummaryCards';
 import TransactionsTable from './TransactionsTable';
 import ExpensePieChart from './ExpensePieChart';
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/dashboard/');
+      const response = await api.get('/api/dashboard/');
       setDashboardData(response.data);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);

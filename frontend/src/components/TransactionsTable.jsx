@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 
 const TransactionsTable = () => {
   const [transactions, setTransactions] = useState([]);
@@ -13,7 +13,7 @@ const TransactionsTable = () => {
   const fetchTransactions = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/transactions/');
+      const response = await api.get('/api/transactions/');
       setTransactions(response.data);
       setError(null);
     } catch (err) {
