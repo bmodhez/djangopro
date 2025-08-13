@@ -4,9 +4,9 @@
   "description": "Django project with frontend",
   "main": "index.js",
   "scripts": {
-    "start": "source .venv/Scripts/activate && cd djangopro && python manage.py runserver 0.0.0.0:3000",
-    "dev": "source .venv/Scripts/activate && cd djangopro && python manage.py runserver 0.0.0.0:3000",
-    "install-deps": "source .venv/Scripts/activate && pip install -r requirements.txt"
+    "start": ". .venv/Scripts/activate && cd djangopro && python manage.py runserver 0.0.0.0:3000",
+    "dev": ". .venv/Scripts/activate && cd djangopro && python manage.py runserver 0.0.0.0:3000",
+    "install-deps": ". .venv/Scripts/activate && pip install -r requirements.txt"
   },
   "dependencies": {},
   "devDependencies": {}
