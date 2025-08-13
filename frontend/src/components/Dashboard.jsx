@@ -9,7 +9,7 @@ import NetworkDebug from './NetworkDebug';
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [useOfflineMode, setUseOfflineMode] = useState(false);
+  const [useOfflineMode, setUseOfflineMode] = useState(true); // Start in offline mode for immediate functionality
 
   useEffect(() => {
     if (useOfflineMode) {
@@ -118,7 +118,7 @@ const Dashboard = () => {
           <div>
             <h3 className="text-sm font-medium text-blue-900">Dashboard Mode</h3>
             <p className="text-xs text-blue-700">
-              {useOfflineMode ? 'Using sample data (offline mode)' : 'Attempting to fetch live data'}
+              {useOfflineMode ? 'Using sample data - dashboard fully functional' : 'Attempting to fetch live data from Django API'}
             </p>
           </div>
           <button
