@@ -4,6 +4,7 @@ import SummaryCards from './SummaryCards';
 import TransactionsTable from './TransactionsTable';
 import ExpensePieChart from './ExpensePieChart';
 import MonthlyTrendChart from './MonthlyTrendChart';
+import NetworkDebug from './NetworkDebug';
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -68,6 +69,9 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
+      {/* Network Debug Info */}
+      <NetworkDebug />
+
       {/* Summary Cards */}
       <SummaryCards data={dashboardData} />
       
