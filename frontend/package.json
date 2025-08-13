@@ -1,0 +1,14 @@
+{
+  "name": "djangopro-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Django Pro application",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'Frontend not configured yet'",
+    "dev": "echo 'Frontend development server not configured'",
+    "build": "echo 'Frontend build not configured'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
