@@ -1,0 +1,13 @@
+{
+  "name": "djangopro",
+  "version": "1.0.0",
+  "description": "Django project with frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd djangopro && python manage.py runserver 0.0.0.0:3000",
+    "dev": "cd djangopro && python manage.py runserver 0.0.0.0:3000",
+    "install-deps": "pip install -r requirements.txt"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
