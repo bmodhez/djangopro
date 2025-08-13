@@ -26,23 +26,48 @@ const NetworkDebug = () => {
 
   const testApiConnection = async (info) => {
     try {
+      console.log('Testing API connection with base URL:', api.defaults.baseURL);
       const response = await api.get('/api/dashboard/');
+      console.log('API response received:', response.status, response.data);
+
       setDebugInfo({
         ...info,
         apiStatus: `✅ Connected (${response.status})`,
         lastError: null
       });
     } catch (error) {
-      setDebugInfo({
-        ...info,
-        apiStatus: `❌ Failed`,
-        lastError: {
-          message: error.message,
-          code: error.code,
-          url: error.config?.url,
-          baseURL: error.config?.baseURL
+      console.error('API connection failed:', error);
+
+      // Try with fetch directly to see if it's an axios issue
+      try {
+        const directResponse = await fetch('/api/dashboard/');
+        if (directResponse.ok) {
+          setDebugInfo({
+            ...info,
+            apiStatus: `⚠️ Axios failed but fetch works (${directResponse.status})`,
+            lastError: {
+              message: `Axios error: ${error.message}, but direct fetch works`,
+              code: error.code,
+              url: error.config?.url,
+              baseURL: error.config?.baseURL
+            }
+          });
+        } else {
+          throw new Error(`Direct fetch also failed: ${directResponse.status}`);
         }
-      });
+      } catch (directError) {
+        setDebugInfo({
+          ...info,
+          apiStatus: `❌ Both axios and fetch failed`,
+          lastError: {
+            message: error.message,
+            code: error.code,
+            url: error.config?.url,
+            baseURL: error.config?.baseURL,
+            directFetchError: directError.message
+          }
+        });
+      }
     }
   };
 
