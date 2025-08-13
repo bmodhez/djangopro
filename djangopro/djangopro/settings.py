@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-m_^=br8qns%dbyt_pmuv1@tnl$p=q+gu=_o3xe6^%6lyacf4)&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # Allow all hosts for development
 
 
 # Application definition
@@ -49,6 +49,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev', 'http://localhost:3001']
 
 ROOT_URLCONF = 'djangopro.urls'
 
