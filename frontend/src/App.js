@@ -18,7 +18,8 @@ const FALLBACK_DATA = {
     { id: 7, name: 'MySQL', level: 75, category: 'Database' },
     { id: 8, name: 'Git', level: 85, category: 'Tools' },
     { id: 9, name: 'Bootstrap', level: 80, category: 'Frontend' },
-    { id: 10, name: 'VS Code', level: 90, category: 'Tools' }
+    { id: 10, name: 'VS Code', level: 90, category: 'Tools' },
+    { id: 11, name: 'GitHub', level: 85, category: 'Tools' }
   ],
   experiences: [
     {
