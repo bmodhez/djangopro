@@ -348,8 +348,8 @@ function ExperienceSection({ experiences }) {
     <section id="experience" className="experience-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Work Experience</h2>
-          <p className="section-subtitle">My professional journey</p>
+          <h2 className="section-title">Professional Status</h2>
+          <p className="section-subtitle">Ready to start my career journey</p>
         </div>
         <div className="timeline">
           {experiences.map((exp) => (
@@ -472,7 +472,7 @@ function ContactSection({ contactInfo }) {
         <div className="contact-content">
           <div className="contact-info">
             <div className="contact-item">
-              <div className="contact-icon">📧</div>
+              <div className="contact-icon">���</div>
               <div className="contact-details">
                 <h4>Email</h4>
                 <p>{contactInfo.email || 'bhavin.modh@email.com'}</p>
