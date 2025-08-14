@@ -14,7 +14,7 @@ const FALLBACK_DATA = {
     { id: 3, name: 'Django', level: 85, category: 'Backend' },
     { id: 4, name: 'Python', level: 87, category: 'Backend' },
     { id: 5, name: 'Node.js', level: 80, category: 'Backend' },
-    { id: 6, name: 'CSS/SASS', level: 92, category: 'Frontend' },
+    { id: 6, name: 'CSS', level: 92, category: 'Frontend' },
     { id: 7, name: 'MySQL', level: 75, category: 'Database' },
     { id: 8, name: 'Git', level: 85, category: 'Tools' }
   ],
