@@ -254,7 +254,7 @@ function HeroSection() {
             </div>
           </div>
           <div className="hero-image">
-            <div className="phone-mockup" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
+            <div className="phone-mockup" style={{ transform: `translateY(${scrollY * 1.2}px)` }}>
               <div className="phone-screen">
                 <div className="phone-content">
                   <div className="phone-avatar">
