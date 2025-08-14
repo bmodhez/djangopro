@@ -42,7 +42,7 @@ const FALLBACK_DATA = {
       id: 2,
       title: 'Task Management App',
       description: 'Collaborative project management tool with real-time updates and team collaboration features.',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+      technologies: ['React', 'Tailwind CSS', 'JavaScript', 'MySQL'],
       image: '📋'
     },
     {
