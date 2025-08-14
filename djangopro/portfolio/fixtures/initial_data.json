@@ -1,0 +1,170 @@
+[
+  {
+    "model": "portfolio.aboutinfo",
+    "pk": 1,
+    "fields": {
+      "intro_text": "A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities. With meticulous attention to detail and a passion for innovation.",
+      "years_experience": 3,
+      "projects_completed": 50,
+      "client_satisfaction": 100,
+      "is_active": true
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 1,
+    "fields": {
+      "name": "React",
+      "level": 90,
+      "category": "Frontend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 2,
+    "fields": {
+      "name": "JavaScript",
+      "level": 88,
+      "category": "Frontend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 3,
+    "fields": {
+      "name": "Django",
+      "level": 85,
+      "category": "Backend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 4,
+    "fields": {
+      "name": "Python",
+      "level": 87,
+      "category": "Backend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 5,
+    "fields": {
+      "name": "Node.js",
+      "level": 80,
+      "category": "Backend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 6,
+    "fields": {
+      "name": "CSS/SASS",
+      "level": 92,
+      "category": "Frontend"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 7,
+    "fields": {
+      "name": "PostgreSQL",
+      "level": 75,
+      "category": "Database"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 8,
+    "fields": {
+      "name": "Git",
+      "level": 85,
+      "category": "Tools"
+    }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 1,
+    "fields": {
+      "title": "Senior Full Stack Developer",
+      "company": "Tech Solutions Inc.",
+      "period": "2022 - Present",
+      "description": "Lead development of web applications using React and Django. Mentored junior developers and improved system performance by 40%.",
+      "technologies": ["React", "Django", "PostgreSQL", "AWS"],
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 2,
+    "fields": {
+      "title": "Frontend Developer",
+      "company": "Digital Agency",
+      "period": "2021 - 2022",
+      "description": "Developed responsive web applications and implemented modern UI/UX designs. Collaborated with design team to deliver pixel-perfect interfaces.",
+      "technologies": ["React", "JavaScript", "CSS3", "Figma"],
+      "order": 2
+    }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 3,
+    "fields": {
+      "title": "Junior Developer",
+      "company": "StartupXYZ",
+      "period": "2020 - 2021",
+      "description": "Built and maintained company website and internal tools. Learned modern development practices and agile methodologies.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Python"],
+      "order": 1
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "title": "E-Commerce Platform",
+      "description": "Full-featured online store with payment integration, user authentication, and admin dashboard.",
+      "technologies": ["React", "Django", "Stripe", "PostgreSQL"],
+      "image_emoji": "🛒",
+      "link": "#",
+      "demo_link": "#",
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 2,
+    "fields": {
+      "title": "Task Management App",
+      "description": "Collaborative project management tool with real-time updates and team collaboration features.",
+      "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
+      "image_emoji": "📋",
+      "link": "#",
+      "demo_link": "#",
+      "order": 2
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 3,
+    "fields": {
+      "title": "Weather Dashboard",
+      "description": "Interactive weather application with location-based forecasts and beautiful data visualizations.",
+      "technologies": ["React", "D3.js", "Weather API", "CSS3"],
+      "image_emoji": "🌤️",
+      "link": "#",
+      "demo_link": "#",
+      "order": 1
+    }
+  },
+  {
+    "model": "portfolio.contactinfo",
+    "pk": 1,
+    "fields": {
+      "email": "bhavin.modh@email.com",
+      "phone": "+1 (555) 123-4567",
+      "location": "Your City, Country",
+      "is_active": true
+    }
+  }
+]
