@@ -217,6 +217,17 @@ function Navigation({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen 
 }
 
 function HeroSection() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-overlay-text">
@@ -243,10 +254,16 @@ function HeroSection() {
             </div>
           </div>
           <div className="hero-image">
-            <div className="phone-mockup">
+            <div className="phone-mockup" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
               <div className="phone-screen">
                 <div className="phone-content">
-                  <div className="phone-avatar">BM</div>
+                  <div className="phone-avatar">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fa199bf633256402c81a25718a4383407%2F8a90ce1286bf483aa71ea4e0f5917c04?format=webp&width=800"
+                      alt="Profile"
+                      className="avatar-image"
+                    />
+                  </div>
                   <h3>Portfolio</h3>
                   <p>Professional developer creating innovative digital solutions with passion and precision.</p>
                 </div>
