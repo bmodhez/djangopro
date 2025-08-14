@@ -13,35 +13,22 @@ const FALLBACK_DATA = {
     { id: 2, name: 'JavaScript', level: 88, category: 'Frontend' },
     { id: 3, name: 'Django', level: 85, category: 'Backend' },
     { id: 4, name: 'Python', level: 87, category: 'Backend' },
-    { id: 5, name: 'Node.js', level: 80, category: 'Backend' },
-    { id: 6, name: 'CSS/SASS', level: 92, category: 'Frontend' },
-    { id: 7, name: 'PostgreSQL', level: 75, category: 'Database' },
-    { id: 8, name: 'Git', level: 85, category: 'Tools' }
+    { id: 5, name: 'Tailwind CSS', level: 85, category: 'Frontend' },
+    { id: 6, name: 'CSS', level: 92, category: 'Frontend' },
+    { id: 7, name: 'MySQL', level: 75, category: 'Database' },
+    { id: 8, name: 'Git', level: 85, category: 'Tools' },
+    { id: 9, name: 'Bootstrap', level: 80, category: 'Frontend' },
+    { id: 10, name: 'VS Code', level: 90, category: 'Tools' },
+    { id: 11, name: 'GitHub', level: 85, category: 'Tools' }
   ],
   experiences: [
     {
       id: 1,
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2022 - Present',
-      description: 'Lead development of web applications using React and Django. Mentored junior developers and improved system performance by 40%.',
-      technologies: ['React', 'Django', 'PostgreSQL', 'AWS']
-    },
-    {
-      id: 2,
-      title: 'Frontend Developer',
-      company: 'Digital Agency',
-      period: '2021 - 2022',
-      description: 'Developed responsive web applications and implemented modern UI/UX designs. Collaborated with design team to deliver pixel-perfect interfaces.',
-      technologies: ['React', 'JavaScript', 'CSS3', 'Figma']
-    },
-    {
-      id: 3,
-      title: 'Junior Developer',
-      company: 'StartupXYZ',
-      period: '2020 - 2021',
-      description: 'Built and maintained company website and internal tools. Learned modern development practices and agile methodologies.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Python']
+      title: 'Fresher - Full Stack Developer',
+      company: 'Looking for Opportunities',
+      period: 'Ready to Start',
+      description: 'Recent graduate eager to apply my skills in web development. Passionate about learning new technologies and contributing to innovative projects.',
+      technologies: ['React', 'Django', 'JavaScript', 'HTML', 'CSS', 'Python']
     }
   ],
   projects: [
@@ -49,14 +36,14 @@ const FALLBACK_DATA = {
       id: 1,
       title: 'E-Commerce Platform',
       description: 'Full-featured online store with payment integration, user authentication, and admin dashboard.',
-      technologies: ['React', 'Django', 'Stripe', 'PostgreSQL'],
+      technologies: ['React', 'Django', 'Stripe', 'MySQL'],
       image: '🛒'
     },
     {
       id: 2,
       title: 'Task Management App',
       description: 'Collaborative project management tool with real-time updates and team collaboration features.',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+      technologies: ['React', 'Tailwind CSS', 'JavaScript', 'MySQL'],
       image: '📋'
     },
     {
@@ -68,14 +55,14 @@ const FALLBACK_DATA = {
     }
   ],
   contactInfo: {
-    email: 'bhavin.modh@email.com',
-    phone: '+1 (555) 123-4567',
-    location: 'Your City, Country'
+    email: 'workbhavinmail@gmail.com',
+    phone: '+91 9322667822',
+    location: 'Mumbai, India'
   },
   aboutInfo: {
-    intro_text: 'A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities. With meticulous attention to detail and a passion for innovation.',
-    years_experience: 3,
-    projects_completed: 50,
+    intro_text: 'A passionate and dedicated fresher in web development, eager to transform creative ideas into digital reality. Always learning and ready to contribute to exciting projects with fresh perspective and enthusiasm.',
+    years_experience: 0,
+    projects_completed: 8,
     client_satisfaction: 100
   }
 };
@@ -230,6 +217,17 @@ function Navigation({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen 
 }
 
 function HeroSection() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-overlay-text">
@@ -256,10 +254,16 @@ function HeroSection() {
             </div>
           </div>
           <div className="hero-image">
-            <div className="phone-mockup">
+            <div className="phone-mockup" style={{ transform: `translateY(${scrollY * 1.2}px)` }}>
               <div className="phone-screen">
                 <div className="phone-content">
-                  <div className="phone-avatar">BM</div>
+                  <div className="phone-avatar">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fa199bf633256402c81a25718a4383407%2F8a90ce1286bf483aa71ea4e0f5917c04?format=webp&width=800"
+                      alt="Profile"
+                      className="avatar-image"
+                    />
+                  </div>
                   <h3>Portfolio</h3>
                   <p>Professional developer creating innovative digital solutions with passion and precision.</p>
                 </div>
@@ -311,16 +315,16 @@ function AboutSection({ aboutInfo }) {
           </div>
           <div className="about-stats">
             <div className="stat-item">
-              <div className="stat-number">{aboutInfo.years_experience || 3}+</div>
-              <div className="stat-label">Years Experience</div>
+              <div className="stat-number">Fresh</div>
+              <div className="stat-label">Graduate</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">{aboutInfo.projects_completed || 50}+</div>
-              <div className="stat-label">Projects Completed</div>
+              <div className="stat-number">{aboutInfo.projects_completed || 8}+</div>
+              <div className="stat-label">Learning Projects</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">{aboutInfo.client_satisfaction || 100}%</div>
-              <div className="stat-label">Client Satisfaction</div>
+              <div className="stat-label">Dedication</div>
             </div>
           </div>
         </div>
@@ -364,8 +368,8 @@ function ExperienceSection({ experiences }) {
     <section id="experience" className="experience-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Work Experience</h2>
-          <p className="section-subtitle">My professional journey</p>
+          <h2 className="section-title">Professional Status</h2>
+          <p className="section-subtitle">Ready to start my career journey</p>
         </div>
         <div className="timeline">
           {experiences.map((exp) => (
