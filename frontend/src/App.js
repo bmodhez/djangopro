@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const API_BASE_URL = 'http://localhost:8000/api';
+
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [skills, setSkills] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [contactInfo, setContactInfo] = useState({});
+  const [aboutInfo, setAboutInfo] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    fetchPortfolioData();
+    
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'experience', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
@@ -23,6 +33,36 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const fetchPortfolioData = async () => {
+    try {
+      const [skillsRes, experiencesRes, projectsRes, contactRes, aboutRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/skills/`),
+        fetch(`${API_BASE_URL}/experiences/`),
+        fetch(`${API_BASE_URL}/projects/`),
+        fetch(`${API_BASE_URL}/contact-info/`),
+        fetch(`${API_BASE_URL}/about-info/`)
+      ]);
+
+      const [skillsData, experiencesData, projectsData, contactData, aboutData] = await Promise.all([
+        skillsRes.json(),
+        experiencesRes.json(),
+        projectsRes.json(),
+        contactRes.json(),
+        aboutRes.json()
+      ]);
+
+      setSkills(skillsData);
+      setExperiences(experiencesData);
+      setProjects(projectsData);
+      setContactInfo(contactData);
+      setAboutInfo(aboutData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching portfolio data:', error);
+      setLoading(false);
+    }
+  };
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -30,6 +70,16 @@ function App() {
     }
     setIsMenuOpen(false);
   };
+
+  if (loading) {
+    return (
+      <div className="App">
+        <div className="loading-container">
+          <h2>Loading Portfolio...</h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
@@ -40,11 +90,11 @@ function App() {
         setIsMenuOpen={setIsMenuOpen}
       />
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <ContactSection />
+      <AboutSection aboutInfo={aboutInfo} />
+      <SkillsSection skills={skills} />
+      <ExperienceSection experiences={experiences} />
+      <ProjectsSection projects={projects} />
+      <ContactSection contactInfo={contactInfo} />
     </div>
   );
 }
@@ -129,7 +179,7 @@ function HeroSection() {
   );
 }
 
-function AboutSection() {
+function AboutSection({ aboutInfo }) {
   return (
     <section id="about" className="about-section">
       <div className="container">
@@ -140,8 +190,7 @@ function AboutSection() {
         <div className="about-content">
           <div className="about-text">
             <p className="about-intro">
-              A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities.
-              With meticulous attention to detail and a passion for innovation.
+              {aboutInfo.intro_text || "A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities."}
             </p>
             <div className="about-highlights">
               <div className="highlight-item">
@@ -169,15 +218,15 @@ function AboutSection() {
           </div>
           <div className="about-stats">
             <div className="stat-item">
-              <div className="stat-number">3+</div>
+              <div className="stat-number">{aboutInfo.years_experience || 3}+</div>
               <div className="stat-label">Years Experience</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">50+</div>
+              <div className="stat-number">{aboutInfo.projects_completed || 50}+</div>
               <div className="stat-label">Projects Completed</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">100%</div>
+              <div className="stat-number">{aboutInfo.client_satisfaction || 100}%</div>
               <div className="stat-label">Client Satisfaction</div>
             </div>
           </div>
@@ -187,18 +236,7 @@ function AboutSection() {
   );
 }
 
-function SkillsSection() {
-  const skills = [
-    { name: 'React', level: 90, category: 'Frontend' },
-    { name: 'JavaScript', level: 88, category: 'Frontend' },
-    { name: 'Django', level: 85, category: 'Backend' },
-    { name: 'Python', level: 87, category: 'Backend' },
-    { name: 'Node.js', level: 80, category: 'Backend' },
-    { name: 'CSS/SASS', level: 92, category: 'Frontend' },
-    { name: 'PostgreSQL', level: 75, category: 'Database' },
-    { name: 'Git', level: 85, category: 'Tools' }
-  ];
-
+function SkillsSection({ skills }) {
   return (
     <section id="skills" className="skills-section">
       <div className="container">
@@ -207,8 +245,8 @@ function SkillsSection() {
           <p className="section-subtitle">Technologies I work with</p>
         </div>
         <div className="skills-grid">
-          {skills.map((skill, index) => (
-            <div key={index} className="skill-item">
+          {skills.map((skill) => (
+            <div key={skill.id} className="skill-item">
               <div className="skill-header">
                 <span className="skill-name">{skill.name}</span>
                 <span className="skill-percentage">{skill.level}%</span>
@@ -228,31 +266,7 @@ function SkillsSection() {
   );
 }
 
-function ExperienceSection() {
-  const experiences = [
-    {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2022 - Present',
-      description: 'Lead development of web applications using React and Django. Mentored junior developers and improved system performance by 40%.',
-      technologies: ['React', 'Django', 'PostgreSQL', 'AWS']
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'Digital Agency',
-      period: '2021 - 2022',
-      description: 'Developed responsive web applications and implemented modern UI/UX designs. Collaborated with design team to deliver pixel-perfect interfaces.',
-      technologies: ['React', 'JavaScript', 'CSS3', 'Figma']
-    },
-    {
-      title: 'Junior Developer',
-      company: 'StartupXYZ',
-      period: '2020 - 2021',
-      description: 'Built and maintained company website and internal tools. Learned modern development practices and agile methodologies.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Python']
-    }
-  ];
-
+function ExperienceSection({ experiences }) {
   return (
     <section id="experience" className="experience-section">
       <div className="container">
@@ -261,8 +275,8 @@ function ExperienceSection() {
           <p className="section-subtitle">My professional journey</p>
         </div>
         <div className="timeline">
-          {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item">
+          {experiences.map((exp) => (
+            <div key={exp.id} className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <div className="experience-header">
@@ -285,31 +299,7 @@ function ExperienceSection() {
   );
 }
 
-function ProjectsSection() {
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Full-featured online store with payment integration, user authentication, and admin dashboard.',
-      technologies: ['React', 'Django', 'Stripe', 'PostgreSQL'],
-      image: '🛒',
-      link: '#'
-    },
-    {
-      title: 'Task Management App',
-      description: 'Collaborative project management tool with real-time updates and team collaboration features.',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-      image: '📋',
-      link: '#'
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'Interactive weather application with location-based forecasts and beautiful data visualizations.',
-      technologies: ['React', 'D3.js', 'Weather API', 'CSS3'],
-      image: '🌤️',
-      link: '#'
-    }
-  ];
-
+function ProjectsSection({ projects }) {
   return (
     <section id="projects" className="projects-section">
       <div className="container">
@@ -318,8 +308,8 @@ function ProjectsSection() {
           <p className="section-subtitle">Some of my recent work</p>
         </div>
         <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div key={index} className="project-card">
+          {projects.map((project) => (
+            <div key={project.id} className="project-card">
               <div className="project-image">
                 <div className="project-phone">
                   <div className="project-phone-screen">
@@ -348,7 +338,50 @@ function ProjectsSection() {
   );
 }
 
-function ContactSection() {
+function ContactSection({ contactInfo }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact-message/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitMessage('Thank you for your message! I will get back to you soon.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitMessage('There was an error sending your message. Please try again.');
+      }
+    } catch (error) {
+      setSubmitMessage('There was an error sending your message. Please try again.');
+    }
+
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitMessage(''), 5000);
+  };
+
   return (
     <section id="contact" className="contact-section">
       <div className="container">
@@ -362,39 +395,78 @@ function ContactSection() {
               <div className="contact-icon">📧</div>
               <div className="contact-details">
                 <h4>Email</h4>
-                <p>bhavin.modh@email.com</p>
+                <p>{contactInfo.email || 'bhavin.modh@email.com'}</p>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">📱</div>
               <div className="contact-details">
                 <h4>Phone</h4>
-                <p>+1 (555) 123-4567</p>
+                <p>{contactInfo.phone || '+1 (555) 123-4567'}</p>
               </div>
             </div>
             <div className="contact-item">
               <div className="contact-icon">📍</div>
               <div className="contact-details">
                 <h4>Location</h4>
-                <p>Your City, Country</p>
+                <p>{contactInfo.location || 'Your City, Country'}</p>
               </div>
             </div>
           </div>
           <div className="contact-form">
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <input type="text" placeholder="Your Name" className="form-input" />
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Your Name" 
+                  className="form-input"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div className="form-group">
-                <input type="email" placeholder="Your Email" className="form-input" />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Your Email" 
+                  className="form-input"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Subject" className="form-input" />
+                <input 
+                  type="text" 
+                  name="subject"
+                  placeholder="Subject" 
+                  className="form-input"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <div className="form-group">
-                <textarea placeholder="Your Message" className="form-textarea" rows="5"></textarea>
+                <textarea 
+                  name="message"
+                  placeholder="Your Message" 
+                  className="form-textarea" 
+                  rows="5"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                ></textarea>
               </div>
-              <button type="submit" className="form-button">Send Message</button>
+              <button type="submit" className="form-button" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+              {submitMessage && (
+                <p className={`submit-message ${submitMessage.includes('error') ? 'error' : 'success'}`}>
+                  {submitMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>
