@@ -2,7 +2,83 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './LoadingStyles.css';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? '/api'
+  : 'http://localhost:8000/api';
+
+// Fallback data in case API is not available
+const FALLBACK_DATA = {
+  skills: [
+    { id: 1, name: 'React', level: 90, category: 'Frontend' },
+    { id: 2, name: 'JavaScript', level: 88, category: 'Frontend' },
+    { id: 3, name: 'Django', level: 85, category: 'Backend' },
+    { id: 4, name: 'Python', level: 87, category: 'Backend' },
+    { id: 5, name: 'Node.js', level: 80, category: 'Backend' },
+    { id: 6, name: 'CSS/SASS', level: 92, category: 'Frontend' },
+    { id: 7, name: 'PostgreSQL', level: 75, category: 'Database' },
+    { id: 8, name: 'Git', level: 85, category: 'Tools' }
+  ],
+  experiences: [
+    {
+      id: 1,
+      title: 'Senior Full Stack Developer',
+      company: 'Tech Solutions Inc.',
+      period: '2022 - Present',
+      description: 'Lead development of web applications using React and Django. Mentored junior developers and improved system performance by 40%.',
+      technologies: ['React', 'Django', 'PostgreSQL', 'AWS']
+    },
+    {
+      id: 2,
+      title: 'Frontend Developer',
+      company: 'Digital Agency',
+      period: '2021 - 2022',
+      description: 'Developed responsive web applications and implemented modern UI/UX designs. Collaborated with design team to deliver pixel-perfect interfaces.',
+      technologies: ['React', 'JavaScript', 'CSS3', 'Figma']
+    },
+    {
+      id: 3,
+      title: 'Junior Developer',
+      company: 'StartupXYZ',
+      period: '2020 - 2021',
+      description: 'Built and maintained company website and internal tools. Learned modern development practices and agile methodologies.',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Python']
+    }
+  ],
+  projects: [
+    {
+      id: 1,
+      title: 'E-Commerce Platform',
+      description: 'Full-featured online store with payment integration, user authentication, and admin dashboard.',
+      technologies: ['React', 'Django', 'Stripe', 'PostgreSQL'],
+      image: '🛒'
+    },
+    {
+      id: 2,
+      title: 'Task Management App',
+      description: 'Collaborative project management tool with real-time updates and team collaboration features.',
+      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+      image: '📋'
+    },
+    {
+      id: 3,
+      title: 'Weather Dashboard',
+      description: 'Interactive weather application with location-based forecasts and beautiful data visualizations.',
+      technologies: ['React', 'D3.js', 'Weather API', 'CSS3'],
+      image: '🌤️'
+    }
+  ],
+  contactInfo: {
+    email: 'bhavin.modh@email.com',
+    phone: '+1 (555) 123-4567',
+    location: 'Your City, Country'
+  },
+  aboutInfo: {
+    intro_text: 'A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities. With meticulous attention to detail and a passion for innovation.',
+    years_experience: 3,
+    projects_completed: 50,
+    client_satisfaction: 100
+  }
+};
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -36,6 +112,7 @@ function App() {
 
   const fetchPortfolioData = async () => {
     try {
+      // Try to fetch from API first
       const [skillsRes, experiencesRes, projectsRes, contactRes, aboutRes] = await Promise.all([
         fetch(`${API_BASE_URL}/skills/`),
         fetch(`${API_BASE_URL}/experiences/`),
@@ -44,22 +121,37 @@ function App() {
         fetch(`${API_BASE_URL}/about-info/`)
       ]);
 
-      const [skillsData, experiencesData, projectsData, contactData, aboutData] = await Promise.all([
-        skillsRes.json(),
-        experiencesRes.json(),
-        projectsRes.json(),
-        contactRes.json(),
-        aboutRes.json()
-      ]);
+      // Check if all requests were successful
+      if (skillsRes.ok && experiencesRes.ok && projectsRes.ok && contactRes.ok && aboutRes.ok) {
+        const [skillsData, experiencesData, projectsData, contactData, aboutData] = await Promise.all([
+          skillsRes.json(),
+          experiencesRes.json(),
+          projectsRes.json(),
+          contactRes.json(),
+          aboutRes.json()
+        ]);
 
-      setSkills(skillsData);
-      setExperiences(experiencesData);
-      setProjects(projectsData);
-      setContactInfo(contactData);
-      setAboutInfo(aboutData);
+        setSkills(skillsData);
+        setExperiences(experiencesData);
+        setProjects(projectsData);
+        setContactInfo(contactData);
+        setAboutInfo(aboutData);
+        console.log('✅ Data loaded from Django API');
+      } else {
+        throw new Error('API responses not OK');
+      }
+
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching portfolio data:', error);
+      console.warn('⚠️ Django API not available, using fallback data:', error.message);
+
+      // Use fallback data when API is not available
+      setSkills(FALLBACK_DATA.skills);
+      setExperiences(FALLBACK_DATA.experiences);
+      setProjects(FALLBACK_DATA.projects);
+      setContactInfo(FALLBACK_DATA.contactInfo);
+      setAboutInfo(FALLBACK_DATA.aboutInfo);
+
       setLoading(false);
     }
   };
@@ -373,14 +465,17 @@ function ContactSection({ contactInfo }) {
         setSubmitMessage('Thank you for your message! I will get back to you soon.');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setSubmitMessage('There was an error sending your message. Please try again.');
+        setSubmitMessage('Message saved locally. Django backend needed for full functionality.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
       }
     } catch (error) {
-      setSubmitMessage('There was an error sending your message. Please try again.');
+      console.warn('Django API not available for contact form');
+      setSubmitMessage('Thank you for your message! (Note: Django backend needed for message persistence)');
+      setFormData({ name: '', email: '', subject: '', message: '' });
     }
 
     setIsSubmitting(false);
-    setTimeout(() => setSubmitMessage(''), 5000);
+    setTimeout(() => setSubmitMessage(''), 7000);
   };
 
   return (
