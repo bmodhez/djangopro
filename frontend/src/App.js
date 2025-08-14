@@ -57,9 +57,9 @@ const FALLBACK_DATA = {
     location: 'Your City, Country'
   },
   aboutInfo: {
-    intro_text: 'A dedicated craftsman of digital experiences, specializing in the art of transforming visionary concepts into exceptional realities. With meticulous attention to detail and a passion for innovation.',
-    years_experience: 3,
-    projects_completed: 50,
+    intro_text: 'A passionate and dedicated fresher in web development, eager to transform creative ideas into digital reality. Always learning and ready to contribute to exciting projects with fresh perspective and enthusiasm.',
+    years_experience: 0,
+    projects_completed: 8,
     client_satisfaction: 100
   }
 };
@@ -472,7 +472,7 @@ function ContactSection({ contactInfo }) {
         <div className="contact-content">
           <div className="contact-info">
             <div className="contact-item">
-              <div className="contact-icon">���</div>
+              <div className="contact-icon">📧</div>
               <div className="contact-details">
                 <h4>Email</h4>
                 <p>{contactInfo.email || 'bhavin.modh@email.com'}</p>
