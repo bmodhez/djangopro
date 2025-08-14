@@ -21,27 +21,11 @@ const FALLBACK_DATA = {
   experiences: [
     {
       id: 1,
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2022 - Present',
-      description: 'Lead development of web applications using React and Django. Mentored junior developers and improved system performance by 40%.',
-      technologies: ['React', 'Django', 'PostgreSQL', 'AWS']
-    },
-    {
-      id: 2,
-      title: 'Frontend Developer',
-      company: 'Digital Agency',
-      period: '2021 - 2022',
-      description: 'Developed responsive web applications and implemented modern UI/UX designs. Collaborated with design team to deliver pixel-perfect interfaces.',
-      technologies: ['React', 'JavaScript', 'CSS3', 'Figma']
-    },
-    {
-      id: 3,
-      title: 'Junior Developer',
-      company: 'StartupXYZ',
-      period: '2020 - 2021',
-      description: 'Built and maintained company website and internal tools. Learned modern development practices and agile methodologies.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Python']
+      title: 'Fresher - Full Stack Developer',
+      company: 'Looking for Opportunities',
+      period: 'Ready to Start',
+      description: 'Recent graduate eager to apply my skills in web development. Passionate about learning new technologies and contributing to innovative projects.',
+      technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Python']
     }
   ],
   projects: [
