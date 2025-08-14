@@ -28,7 +28,7 @@ const FALLBACK_DATA = {
       company: 'Looking for Opportunities',
       period: 'Ready to Start',
       description: 'Recent graduate eager to apply my skills in web development. Passionate about learning new technologies and contributing to innovative projects.',
-      technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Python']
+      technologies: ['React', 'Django', 'JavaScript', 'HTML', 'CSS', 'Python']
     }
   ],
   projects: [
@@ -55,9 +55,9 @@ const FALLBACK_DATA = {
     }
   ],
   contactInfo: {
-    email: 'bhavin.modh@email.com',
-    phone: '+1 (555) 123-4567',
-    location: 'Your City, Country'
+    email: 'workbhavinmail@gmail.com',
+    phone: '+91 9322667822',
+    location: 'Mumbai, India'
   },
   aboutInfo: {
     intro_text: 'A passionate and dedicated fresher in web development, eager to transform creative ideas into digital reality. Always learning and ready to contribute to exciting projects with fresh perspective and enthusiasm.',
