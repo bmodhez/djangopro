@@ -33,7 +33,7 @@ const FALLBACK_DATA = {
       id: 1,
       title: 'E-Commerce Platform',
       description: 'Full-featured online store with payment integration, user authentication, and admin dashboard.',
-      technologies: ['React', 'Django', 'Stripe', 'PostgreSQL'],
+      technologies: ['React', 'Django', 'Stripe', 'MySQL'],
       image: '🛒'
     },
     {
