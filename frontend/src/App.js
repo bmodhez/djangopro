@@ -295,16 +295,16 @@ function AboutSection({ aboutInfo }) {
           </div>
           <div className="about-stats">
             <div className="stat-item">
-              <div className="stat-number">{aboutInfo.years_experience || 3}+</div>
-              <div className="stat-label">Years Experience</div>
+              <div className="stat-number">Fresh</div>
+              <div className="stat-label">Graduate</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">{aboutInfo.projects_completed || 50}+</div>
-              <div className="stat-label">Projects Completed</div>
+              <div className="stat-number">{aboutInfo.projects_completed || 8}+</div>
+              <div className="stat-label">Learning Projects</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">{aboutInfo.client_satisfaction || 100}%</div>
-              <div className="stat-label">Client Satisfaction</div>
+              <div className="stat-label">Dedication</div>
             </div>
           </div>
         </div>
